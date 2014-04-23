@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.innova4b.Aeropuertos.persistent">
+	<class name="Vuelo" table="Vuelo">
+		<id name="idVuelo" column="idVuelo">
+			<generator class="increment"></generator>
+		</id>
+		<property name="idCompañia"></property>
+		<property name="idAeropuerto"></property>
+		<property name="horaSalida"></property>
+		<property name="horaLlegada"></property>
+		<property name="idPuertaEmbarqueSalida"></property>
+		<property name="idPuertaEmbarqueLlegada"></property>
+		<property name="idAvion"></property>
+	</class>	
+</hibernate-mapping>
