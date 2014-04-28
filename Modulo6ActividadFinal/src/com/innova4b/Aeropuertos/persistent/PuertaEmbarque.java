@@ -2,8 +2,8 @@ package com.innova4b.Aeropuertos.persistent;
 public class PuertaEmbarque {
 
 	private Long idPuertaEmbarque;
-	private Long idAeropuerto;
-	private Long idEstadoPuerta;
+	private Aeropuerto aeropuerto;
+	private EstadoPuerta estadoPuerta;
 
 	/**
 	 * @param args
@@ -11,12 +11,12 @@ public class PuertaEmbarque {
 	public PuertaEmbarque() {
 	}
 
-	public PuertaEmbarque(Long idPuertaEmbarque, Long idAeropuerto,
-			Long idEstadoPuerta) {
+	public PuertaEmbarque(Long idPuertaEmbarque, Aeropuerto aeropuerto,
+			EstadoPuerta estadoPuerta) {
 		super();
 		this.idPuertaEmbarque = idPuertaEmbarque;
-		this.idAeropuerto = idAeropuerto;
-		this.idEstadoPuerta = idEstadoPuerta;
+		this.aeropuerto = aeropuerto;
+		this.estadoPuerta = estadoPuerta;
 	}
 
 	public Long getIdPuertaEmbarque() {
@@ -27,27 +27,27 @@ public class PuertaEmbarque {
 		this.idPuertaEmbarque = idPuertaEmbarque;
 	}
 
-	public Long getIdAeropuerto() {
-		return idAeropuerto;
+	public Aeropuerto getAeropuerto() {
+		return aeropuerto;
 	}
 
-	public void setIdAeropuerto(Long idAeropuerto) {
-		this.idAeropuerto = idAeropuerto;
+	public void setAeropuerto(Aeropuerto aeropuerto) {
+		this.aeropuerto = aeropuerto;
 	}
 
-	public Long getIdEstadoPuerta() {
-		return idEstadoPuerta;
+	public EstadoPuerta getEstadoPuerta() {
+		return estadoPuerta;
 	}
 
-	public void setIdEstadoPuerta(Long idEstadoPuerta) {
-		this.idEstadoPuerta = idEstadoPuerta;
+	public void setEstadoPuerta(EstadoPuerta estadoPuerta) {
+		this.estadoPuerta = estadoPuerta;
 	}
 
 	@Override
 	public String toString() {
 		return "PuertaEmbarque: " + this.getIdPuertaEmbarque()
-				+ " Aeropuerto: " + this.getIdAeropuerto() + " Estado: "
-				+ this.getIdEstadoPuerta();
+				+ " Aeropuerto: " + this.getAeropuerto().getNombre() + " Estado: "
+				+ this.getEstadoPuerta().getDescripcion();
 	}
 
 }

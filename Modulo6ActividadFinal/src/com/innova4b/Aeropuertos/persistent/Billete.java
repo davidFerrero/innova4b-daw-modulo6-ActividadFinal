@@ -11,7 +11,7 @@ public class Billete {
 	private int asiento;
 	private Date dtVuelo;
 	private String codBillete;
-	private Long idVuelo;
+	private Vuelo vuelo;
 	private int embarca;
 
 	public Billete() {
@@ -19,7 +19,7 @@ public class Billete {
 
 	public Billete(Long idBillete, String dni, String nombre, String apellidos,
 			Date dtNacimiento, int asiento, Date dtVuelo, String codBillete,
-			Long idVuelo, int embarca) {
+			Vuelo vuelo, int embarca) {
 		this.idBillete = idBillete;
 		this.dni = dni;
 		this.nombre = nombre;
@@ -28,7 +28,7 @@ public class Billete {
 		this.asiento = asiento;
 		this.dtVuelo = dtVuelo;
 		this.codBillete = codBillete;
-		this.idVuelo = idVuelo;
+		this.vuelo = vuelo;
 		this.embarca = embarca;
 	}
 
@@ -96,12 +96,12 @@ public class Billete {
 		this.codBillete = codBillete;
 	}
 
-	public Long getIdVuelo() {
-		return idVuelo;
+	public Vuelo getIdVuelo() {
+		return vuelo;
 	}
 
-	public void setIdVuelo(Long idVuelo) {
-		this.idVuelo = idVuelo;
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
 	}
 
 	public int getEmbarca() {

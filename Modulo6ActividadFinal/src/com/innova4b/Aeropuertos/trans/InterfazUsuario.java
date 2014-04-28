@@ -207,11 +207,15 @@ public class InterfazUsuario {
 
 		System.out.println("---------- Introducir Aeropuerto -----------");
 		System.out.println("Para salir en cualquier momento teclee exit\n");
-		
-		aeropuerto.setNombre(teclado.getString("Nombre: "));
-		aeropuerto.setIdLocalidad(teclado.getLong("Localidad: "));
 
-		er.insertAeropuerto(aeropuerto.getNombre(), aeropuerto.getIdLocalidad());
+		aeropuerto.setNombre(teclado.getString("Nombre: "));
+		aeropuerto.setLocalidad(er.retrieveLocalidad(teclado
+				.getLong("Localidad: ")));
+
+		System.out.println("Localidad nombre :"
+				+ aeropuerto.getLocalidad().getNombre());
+
+		er.insertAeropuerto(aeropuerto.getNombre(), aeropuerto.getLocalidad());
 	}
 
 	public void insertAvion() {
@@ -224,12 +228,13 @@ public class InterfazUsuario {
 		avion.setModelo(teclado.getString("Modelo: "));
 		avion.setMaxPasajeros(teclado.getInt("Maximos Pasajeros: "));
 		avion.setPersonalAbordo(teclado.getInt("Personal Abordo: "));
-		avion.setIdEstadoAvion(teclado.getLong("Estado Avion: "));
-		avion.setIdEstadoAvion(teclado.getLong("Compañia: "));
+		avion.setEstadoAvion(er.retrieveEstadoAvion(teclado
+				.getLong("Estado Avion: ")));
+		avion.setCompañia(er.retrieveCompañia(teclado.getLong("Compañia: ")));
 
 		er.insertAvion(avion.getModelo(), avion.getMaxPasajeros(),
-				avion.getPersonalAbordo(), avion.getIdEstadoAvion(),
-				avion.getIdCompañia());
+				avion.getPersonalAbordo(), avion.getEstadoAvion(),
+				avion.getCompañia());
 
 	}
 
@@ -247,7 +252,7 @@ public class InterfazUsuario {
 		billete.setAsiento(teclado.getInt("Asiento: "));
 		billete.setDtVuelo(teclado.getDate("Fecha Vuelo: "));
 		billete.setCodBillete(teclado.getString("Codigo Billete: "));
-		billete.setIdVuelo(teclado.getLong("Vuelo: "));
+		billete.setVuelo(er.retrieveVuelo(teclado.getLong("Vuelo: ")));
 		billete.setEmbarca(teclado.getInt("Embarca S(1) / N(0): "));
 
 		er.insertBillete(billete.getDni(), billete.getNombre(),
@@ -315,11 +320,13 @@ public class InterfazUsuario {
 
 		PuertaEmbarque puertaEmbarque = new PuertaEmbarque();
 
-		puertaEmbarque.setIdAeropuerto(teclado.getLong("Aeropuerto: "));
-		puertaEmbarque.setIdEstadoPuerta(teclado.getLong("Estado Puerta: "));
+		puertaEmbarque.setAeropuerto(er.retrieveAeropuerto(teclado
+				.getLong("Aeropuerto: ")));
+		puertaEmbarque.setEstadoPuerta(er.retrieveEstadoPuerta(teclado
+				.getLong("Estado Puerta: ")));
 
-		er.insertPuertaEmbarque(puertaEmbarque.getIdAeropuerto(),
-				puertaEmbarque.getIdEstadoPuerta());
+		er.insertPuertaEmbarque(puertaEmbarque.getAeropuerto(),
+				puertaEmbarque.getEstadoPuerta());
 	}
 
 	public void insertVuelo() {
@@ -329,20 +336,19 @@ public class InterfazUsuario {
 
 		Vuelo vuelo = new Vuelo();
 
-		vuelo.setIdCompañia(teclado.getLong("Compañia: "));
-		vuelo.setIdAeropuerto(teclado.getLong("Aeropuerto: "));
+		vuelo.setCompañia(er.retrieveCompañia(teclado.getLong("Compañia: ")));
 		vuelo.setHoraSalida(teclado.getDate("Hora Salida: "));
 		vuelo.setHoraLlegada(teclado.getDate("Hora Llegada: "));
-		vuelo.setIdPuertaEmbarqueSalida(teclado
-				.getLong("Puerta Embarque Salida: "));
-		vuelo.setIdPuertaEmbarqueLlegada(teclado
-				.getLong("Puerta Embarque Llegada: "));
-		vuelo.setIdAvion(teclado.getLong("Avion: "));
+		vuelo.setPuertaEmbarqueSalida(er.retrievePuertaEmbarque(teclado
+				.getLong("Puerta Embarque Salida: ")));
+		vuelo.setPuertaEmbarqueLlegada(er.retrievePuertaEmbarque(teclado
+				.getLong("Puerta Embarque Llegada: ")));
+		vuelo.setAvion(er.retrieveAvion(teclado.getLong("Avion: ")));
 
-		er.insertVuelo(vuelo.getIdCompañia(), vuelo.getIdAeropuerto(),
+		er.insertVuelo(vuelo.getCompañia(),
 				vuelo.getHoraSalida(), vuelo.getHoraLlegada(),
-				vuelo.getIdPuertaEmbarqueSalida(),
-				vuelo.getIdPuertaEmbarqueLlegada(), vuelo.getIdAvion());
+				vuelo.getPuertaEmbarqueSalida(),
+				vuelo.getPuertaEmbarqueLlegada(), vuelo.getAvion());
 	}
 
 	public static void main(String[] args) {
@@ -386,7 +392,8 @@ public class InterfazUsuario {
 	public void deleteEstadoPuerta() {
 		System.out.println("---------- Borrar Estado Puerta -----------");
 		System.out.println("Para salir en cualquier momento teclee exit\n");
-		er.deleteEstadoPuerta(Long.parseLong(teclado.getString("Estado Puerta: ")));
+		er.deleteEstadoPuerta(Long.parseLong(teclado
+				.getString("Estado Puerta: ")));
 	}
 
 	public void deleteLocalidad() {
@@ -398,7 +405,8 @@ public class InterfazUsuario {
 	public void deletePuertaEmbarque() {
 		System.out.println("---------- Borrar Puerta Embarque -----------");
 		System.out.println("Para salir en cualquier momento teclee exit\n");
-		er.deletePuertaEmbarque(Long.parseLong(teclado.getString("Puerta Embarque: ")));
+		er.deletePuertaEmbarque(Long.parseLong(teclado
+				.getString("Puerta Embarque: ")));
 	}
 
 	public void deleteVuelo() {

@@ -7,7 +7,7 @@
 		<id name="idPuertaEmbarque" column="idPuertaEmbarque">
 			<generator class="increment"></generator>
 		</id>
-		<property name="idAeropuerto"></property>
-		<property name="idEstadoPuerta"></property>
+		<many-to-one name="aeropuerto" class="Aeropuerto" column="idAeropuerto" unique="true"></many-to-one>
+		<many-to-one name="estadoPuerta" class="EstadoPuerta" column="idEstadoPuerta" unique="true"></many-to-one>
 	</class>	
 </hibernate-mapping>

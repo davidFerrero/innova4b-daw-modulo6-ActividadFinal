@@ -8,7 +8,7 @@
 			<generator class="increment"></generator>
 		</id>
 		<property name="nombre"></property>
-		<property name="idLocalidad"></property>
+		<many-to-one name="localidad" class="Localidad" column="idLocalidad" unique="true"></many-to-one>
 	</class>
 	
 </hibernate-mapping>

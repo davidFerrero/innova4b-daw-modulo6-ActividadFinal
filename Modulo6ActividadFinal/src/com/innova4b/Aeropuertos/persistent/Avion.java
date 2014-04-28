@@ -5,20 +5,20 @@ public class Avion {
 	private String modelo;
 	private int maxPasajeros;
 	private int personalAbordo;
-	private Long idEstadoAvion;
-	private Long idCompañia;
+	private EstadoAvion estadoAvion;
+	private Compañia compañia;
 
 	public Avion() {
 	}
 
 	public Avion(Long idAvion, String modelo, int maxPasajeros,
-			int personalAbordo, Long idEstadoAvion, Long idCompañia) {
+			int personalAbordo, EstadoAvion estadoAvion, Compañia compañia) {
 		this.idAvion = idAvion;
 		this.modelo = modelo;
 		this.maxPasajeros = maxPasajeros;
 		this.personalAbordo = personalAbordo;
-		this.idEstadoAvion = idEstadoAvion;
-		this.idCompañia = idCompañia;
+		this.estadoAvion = estadoAvion;
+		this.compañia = compañia;
 	}
 
 	public Long getIdAvion() {
@@ -53,26 +53,26 @@ public class Avion {
 		this.personalAbordo = personalAbordo;
 	}
 
-	public Long getIdEstadoAvion() {
-		return idEstadoAvion;
+	public EstadoAvion getEstadoAvion() {
+		return estadoAvion;
 	}
 
-	public void setIdEstadoAvion(Long idEstadoAvion) {
-		this.idEstadoAvion = idEstadoAvion;
+	public void setEstadoAvion(EstadoAvion estadoAvion) {
+		this.estadoAvion = estadoAvion;
 	}
 
-	public Long getIdCompañia() {
-		return idCompañia;
+	public Compañia getCompañia() {
+		return compañia;
 	}
 
-	public void setIdCompañia(Long idCompañia) {
-		this.idCompañia = idCompañia;
+	public void setCompañia(Compañia compañia) {
+		this.compañia = compañia;
 	}
 
 	@Override
 	public String toString() {
 		return "Avion: " + this.getIdAvion() + " Compañia: "
-				+ this.getIdCompañia() + " Modelo: " + this.getModelo();
+				+ this.getCompañia().getNombre() + " Modelo: " + this.getModelo();
 	}
 
 }

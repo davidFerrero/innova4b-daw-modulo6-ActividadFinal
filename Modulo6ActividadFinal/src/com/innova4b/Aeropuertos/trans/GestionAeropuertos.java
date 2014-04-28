@@ -16,7 +16,7 @@ import com.innova4b.Aeropuertos.persistent.Vuelo;
 
 public class GestionAeropuertos {
 
-	public void insertAeropuerto(String nombre, Long idLocalidad) {
+	public void insertAeropuerto(String nombre, Localidad localidad) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
@@ -24,13 +24,14 @@ public class GestionAeropuertos {
 		Aeropuerto aeropuerto = new Aeropuerto();
 
 		aeropuerto.setNombre(nombre);
+		aeropuerto.setLocalidad(localidad);
 		String id = session.save(aeropuerto).toString();
 
 		session.getTransaction().commit();
 	}
 
 	public void insertAvion(String modelo, int maxPasajeros,
-			int personalAbordo, Long idEstadoAvion, Long idCompañia) {
+			int personalAbordo, EstadoAvion estadoAvion, Compañia compañia) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
@@ -39,8 +40,8 @@ public class GestionAeropuertos {
 		avion.setModelo(modelo);
 		avion.setMaxPasajeros(maxPasajeros);
 		avion.setPersonalAbordo(personalAbordo);
-		avion.setIdEstadoAvion(idEstadoAvion);
-		avion.setIdCompañia(idCompañia);
+		avion.setEstadoAvion(estadoAvion);
+		avion.setCompañia(compañia);
 		String id = session.save(avion).toString();
 
 		session.getTransaction().commit();
@@ -48,7 +49,7 @@ public class GestionAeropuertos {
 
 	public void insertBillete(String dni, String nombre, String apellidos,
 			Date dtNacimiento, int asiento, Date dtVuelo, String codBillete,
-			Long idVuelo, int embarca) {
+			Vuelo vuelo, int embarca) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
@@ -62,14 +63,14 @@ public class GestionAeropuertos {
 		billete.setAsiento(asiento);
 		billete.setDtVuelo(dtVuelo);
 		billete.setCodBillete(codBillete);
-		billete.setIdVuelo(idVuelo);
+		billete.setVuelo(vuelo);
 		billete.setEmbarca(embarca);
 
 		String id = session.save(billete).toString();
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void insertCompañia(String nombre, String codLicencia,
 			Date dtConcesion, Date dtCaducidad) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -87,7 +88,7 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void insertEstadoAvion(String descripcion) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
@@ -101,7 +102,7 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void insertEstadoPuerta(String descripcion) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
@@ -129,39 +130,38 @@ public class GestionAeropuertos {
 		session.getTransaction().commit();
 	}
 
-	public void insertPuertaEmbarque(Long idAeropuerto,
-			Long idEstadoPuerta) {
+	public void insertPuertaEmbarque(Aeropuerto aeropuerto,
+			EstadoPuerta estadoPuerta) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
 
 		PuertaEmbarque puertaEmbarque = new PuertaEmbarque();
 
-		puertaEmbarque.setIdAeropuerto(idAeropuerto);
-		puertaEmbarque.setIdEstadoPuerta(idEstadoPuerta);
-		
+		puertaEmbarque.setAeropuerto(aeropuerto);
+		puertaEmbarque.setEstadoPuerta(estadoPuerta);
+
 		String id = session.save(puertaEmbarque).toString();
 
 		session.getTransaction().commit();
 	}
-	
-	public void insertVuelo(Long idCompañia, Long idAeropuerto,
-			Date horaSalida, Date horaLlegada, Long idPuertaEmbarqueSalida,
-			Long idPuertaEmbarqueLlegada, Long idAvion) {
+
+	public void insertVuelo(Compañia compañia,
+			Date horaSalida, Date horaLlegada, PuertaEmbarque puertaEmbarqueSalida,
+			PuertaEmbarque puertaEmbarqueLlegada, Avion avion) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
 
 		Vuelo vuelo = new Vuelo();
 
-		vuelo.setIdCompañia(idCompañia);
-		vuelo.setIdAeropuerto(idAeropuerto);
+		vuelo.setCompañia(compañia);
 		vuelo.setHoraSalida(horaSalida);
 		vuelo.setHoraLlegada(horaLlegada);
-		vuelo.setIdPuertaEmbarqueSalida(idPuertaEmbarqueSalida);
-		vuelo.setIdPuertaEmbarqueLlegada(idPuertaEmbarqueLlegada);
-		vuelo.setIdAvion(idAvion);
-		
+		vuelo.setPuertaEmbarqueSalida(puertaEmbarqueSalida);
+		vuelo.setPuertaEmbarqueLlegada(puertaEmbarqueLlegada);
+		vuelo.setAvion(avion);
+
 		String id = session.save(vuelo).toString();
 
 		session.getTransaction().commit();
@@ -319,7 +319,7 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deleteAvion(Long idAvion) {
 
 		Avion avion = new Avion();
@@ -334,7 +334,7 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deleteBillete(Long idBillete) {
 
 		Billete billete = new Billete();
@@ -349,7 +349,7 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deleteCompañia(Long idCompañia) {
 
 		Compañia compañia = new Compañia();
@@ -364,7 +364,7 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deleteEstadoAvion(Long idEstadoAvion) {
 
 		EstadoAvion estadoAvion = new EstadoAvion();
@@ -373,13 +373,14 @@ public class GestionAeropuertos {
 
 		session.beginTransaction();
 
-		estadoAvion = (EstadoAvion) session.get(EstadoAvion.class, idEstadoAvion);
+		estadoAvion = (EstadoAvion) session.get(EstadoAvion.class,
+				idEstadoAvion);
 
 		session.delete(estadoAvion);
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deleteEstadoPuerta(Long idEstadoPuerta) {
 
 		EstadoPuerta estadoPuerta = new EstadoPuerta();
@@ -388,13 +389,14 @@ public class GestionAeropuertos {
 
 		session.beginTransaction();
 
-		estadoPuerta = (EstadoPuerta) session.get(EstadoPuerta.class, idEstadoPuerta);
+		estadoPuerta = (EstadoPuerta) session.get(EstadoPuerta.class,
+				idEstadoPuerta);
 
 		session.delete(estadoPuerta);
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deleteLocalidad(Long idLocalidad) {
 
 		Localidad localidad = new Localidad();
@@ -409,7 +411,7 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deletePuertaEmbarque(Long idPuertaEmbarque) {
 
 		PuertaEmbarque puertaEmbarque = new PuertaEmbarque();
@@ -418,13 +420,14 @@ public class GestionAeropuertos {
 
 		session.beginTransaction();
 
-		puertaEmbarque = (PuertaEmbarque) session.get(PuertaEmbarque.class, idPuertaEmbarque);
+		puertaEmbarque = (PuertaEmbarque) session.get(PuertaEmbarque.class,
+				idPuertaEmbarque);
 
 		session.delete(puertaEmbarque);
 
 		session.getTransaction().commit();
 	}
-	
+
 	public void deleteVuelo(Long idVuelo) {
 
 		Vuelo vuelo = new Vuelo();

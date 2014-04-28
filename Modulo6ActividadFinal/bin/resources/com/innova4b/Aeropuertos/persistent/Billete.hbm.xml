@@ -14,7 +14,7 @@
 		<property name="asiento"></property>
 		<property name="fVuelo"></property>
 		<property name="CodBillete"></property>
-		<property name="idVuelo"></property>
+		<many-to-one name="vuelo" class="Vuelo" column="idVuelo" unique="true"></many-to-one>
 		<property name="embarca"></property>
 	</class>	
 </hibernate-mapping>

@@ -4,29 +4,27 @@ import java.util.Date;
 public class Vuelo {
 
 	private Long idVuelo;
-	private Long idCompañia;
-	private Long idAeropuerto;
+	private Compañia compañia;
 	private Date horaSalida;
 	private Date horaLlegada;
-	private Long idPuertaEmbarqueSalida;
-	private Long idPuertaEmbarqueLlegada;
-	private Long idAvion;
+	private PuertaEmbarque puertaEmbarqueSalida;
+	private PuertaEmbarque puertaEmbarqueLlegada;
+	private Avion avion;
 
 	public Vuelo() {
 	}
 
-	public Vuelo(Long idVuelo, Long idCompañia, Long idAeropuerto,
-			Date horaSalida, Date horaLlegada, Long idPuertaEmbarqueSalida,
-			Long idPuertaEmbarqueLlegada, Long idAvion) {
+	public Vuelo(Long idVuelo, Compañia compañia,
+			Date horaSalida, Date horaLlegada, PuertaEmbarque puertaEmbarqueSalida,
+			PuertaEmbarque puertaEmbarqueLlegada, Avion avion) {
 		super();
 		this.idVuelo = idVuelo;
-		this.idCompañia = idCompañia;
-		this.idAeropuerto = idAeropuerto;
+		this.compañia = compañia;
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
-		this.idPuertaEmbarqueSalida = idPuertaEmbarqueSalida;
-		this.idPuertaEmbarqueLlegada = idPuertaEmbarqueLlegada;
-		this.idAvion = idAvion;
+		this.puertaEmbarqueSalida = puertaEmbarqueSalida;
+		this.puertaEmbarqueLlegada = puertaEmbarqueLlegada;
+		this.avion = avion;
 	}
 
 	public Long getIdVuelo() {
@@ -37,20 +35,12 @@ public class Vuelo {
 		this.idVuelo = idVuelo;
 	}
 
-	public Long getIdCompañia() {
-		return idCompañia;
+	public Compañia getCompañia() {
+		return compañia;
 	}
 
-	public void setIdCompañia(Long idCompañia) {
-		this.idCompañia = idCompañia;
-	}
-
-	public Long getIdAeropuerto() {
-		return idAeropuerto;
-	}
-
-	public void setIdAeropuerto(Long idAeropuerto) {
-		this.idAeropuerto = idAeropuerto;
+	public void setCompañia(Compañia compañia) {
+		this.compañia = compañia;
 	}
 
 	public Date getHoraSalida() {
@@ -69,33 +59,33 @@ public class Vuelo {
 		this.horaLlegada = horaLlegada;
 	}
 
-	public Long getIdPuertaEmbarqueSalida() {
-		return idPuertaEmbarqueSalida;
+	public PuertaEmbarque getPuertaEmbarqueSalida() {
+		return puertaEmbarqueSalida;
 	}
 
-	public void setIdPuertaEmbarqueSalida(Long idPuertaEmbarqueSalida) {
-		this.idPuertaEmbarqueSalida = idPuertaEmbarqueSalida;
+	public void setPuertaEmbarqueSalida(PuertaEmbarque puertaEmbarqueSalida) {
+		this.puertaEmbarqueSalida = puertaEmbarqueSalida;
 	}
 
-	public Long getIdPuertaEmbarqueLlegada() {
-		return idPuertaEmbarqueLlegada;
+	public PuertaEmbarque getPuertaEmbarqueLlegada() {
+		return puertaEmbarqueLlegada;
 	}
 
-	public void setIdPuertaEmbarqueLlegada(Long idPuertaEmbarqueLlegada) {
-		this.idPuertaEmbarqueLlegada = idPuertaEmbarqueLlegada;
+	public void setPuertaEmbarqueLlegada(PuertaEmbarque puertaEmbarqueLlegada) {
+		this.puertaEmbarqueLlegada = puertaEmbarqueLlegada;
 	}
 
-	public Long getIdAvion() {
-		return idAvion;
+	public Avion getAvion() {
+		return avion;
 	}
 
-	public void setIdAvion(Long idAvion) {
-		this.idAvion = idAvion;
+	public void setAvion(Avion avion) {
+		this.avion = avion;
 	}
 
 	@Override
 	public String toString() {
 		return "Vuelo: " + this.getIdVuelo() + " Compañia: "
-				+ this.getIdCompañia() + " Avion: " + this.getIdAvion();
+				+ this.getCompañia().getNombre() + " Avion: " + this.getAvion().getModelo();
 	}
 }

@@ -3,7 +3,7 @@ public class Aeropuerto {
 
 	private Long idAeropuerto;
 	private String nombre;
-	private Long idLocalidad;
+	private Localidad localidad;
 
 	public Aeropuerto() {
 	}
@@ -29,12 +29,12 @@ public class Aeropuerto {
 		this.nombre = nombre;
 	}
 
-	public Long getIdLocalidad() {
-		return idLocalidad;
+	public Localidad getLocalidad() {
+		return localidad;
 	}
 
-	public void setIdLocalidad(Long idLocalidad) {
-		this.idLocalidad = idLocalidad;
+	public void setLocalidad(Localidad Localidad) {
+		this.localidad = Localidad;
 	}
 
 	@Override
