@@ -305,18 +305,124 @@ public class GestionAeropuertos {
 		return vuelo;
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		GestionAeropuertos er = new GestionAeropuertos();
-		System.out.println("args[0]:" + args[0]);
+	public void deleteAeropuerto(Long idAeropuerto) {
 
-		if (args[0].equals("insertAeropuerto")) {
-			er.insertLocalidad("Bilbo");
-			er.insertAeropuerto("Loiu", 2L);
-		}
-		HibernateUtil.getSessionFactory().close();
+		Aeropuerto aeropuerto = new Aeropuerto();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		aeropuerto = (Aeropuerto) session.get(Aeropuerto.class, idAeropuerto);
+
+		session.delete(aeropuerto);
+
+		session.getTransaction().commit();
+	}
+	
+	public void deleteAvion(Long idAvion) {
+
+		Avion avion = new Avion();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		avion = (Avion) session.get(Avion.class, idAvion);
+
+		session.delete(avion);
+
+		session.getTransaction().commit();
+	}
+	
+	public void deleteBillete(Long idBillete) {
+
+		Billete billete = new Billete();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		billete = (Billete) session.get(Billete.class, idBillete);
+
+		session.delete(billete);
+
+		session.getTransaction().commit();
+	}
+	
+	public void deleteCompañia(Long idCompañia) {
+
+		Compañia compañia = new Compañia();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		compañia = (Compañia) session.get(Compañia.class, idCompañia);
+
+		session.delete(compañia);
+
+		session.getTransaction().commit();
+	}
+	
+	public void deleteEstadoAvion(Long idEstadoAvion) {
+
+		EstadoAvion estadoAvion = new EstadoAvion();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		estadoAvion = (EstadoAvion) session.get(EstadoAvion.class, idEstadoAvion);
+
+		session.delete(estadoAvion);
+
+		session.getTransaction().commit();
+	}
+	
+	public void deleteEstadoPuerta(Long idEstadoPuerta) {
+
+		EstadoPuerta estadoPuerta = new EstadoPuerta();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		estadoPuerta = (EstadoPuerta) session.get(EstadoPuerta.class, idEstadoPuerta);
+
+		session.delete(estadoPuerta);
+
+		session.getTransaction().commit();
+	}
+	
+	public void deleteLocalidad(Long idLocalidad) {
+
+		Localidad localidad = new Localidad();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		localidad = (Localidad) session.get(Localidad.class, idLocalidad);
+
+		session.delete(localidad);
+
+		session.getTransaction().commit();
+	}
+	
+	public void deleteVuelo(Long idVuelo) {
+
+		Vuelo vuelo = new Vuelo();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		vuelo = (Vuelo) session.get(Vuelo.class, idVuelo);
+
+		session.delete(vuelo);
+
+		session.getTransaction().commit();
 	}
 
 }
