@@ -410,6 +410,21 @@ public class GestionAeropuertos {
 		session.getTransaction().commit();
 	}
 	
+	public void deletePuertaEmbarque(Long idPuertaEmbarque) {
+
+		PuertaEmbarque puertaEmbarque = new PuertaEmbarque();
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		session.beginTransaction();
+
+		puertaEmbarque = (PuertaEmbarque) session.get(PuertaEmbarque.class, idPuertaEmbarque);
+
+		session.delete(puertaEmbarque);
+
+		session.getTransaction().commit();
+	}
+	
 	public void deleteVuelo(Long idVuelo) {
 
 		Vuelo vuelo = new Vuelo();
