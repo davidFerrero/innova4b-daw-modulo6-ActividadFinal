@@ -7,11 +7,11 @@
 		<id name="idVuelo" column="idVuelo">
 			<generator class="increment"></generator>
 		</id>
-		<many-to-one name="idCompañia" class="Compañia" column="idCompañia" unique="true"></many-to-one>
+		<many-to-one name="Compañia" class="Compañia" column="idCompañia" unique="true"></many-to-one>
 		<property name="horaSalida"></property>
 		<property name="horaLlegada"></property>
-		<many-to-one name="idPuertaEmbarqueSalida" class="PuertaEmbarque" column="idPuertaEmbarque" unique="true"></many-to-one>
-		<many-to-one name="idPuertaEmbarqueLlegada" class="PuertaEmbarque" column="idPuertaEmbarque" unique="true"></many-to-one>
+		<many-to-one name="PuertaEmbarqueSalida" class="PuertaEmbarque" column="idPuertaEmbarqueSalida" unique="true"></many-to-one>
+		<many-to-one name="PuertaEmbarqueLlegada" class="PuertaEmbarque" column="idPuertaEmbarqueLLegada" unique="true"></many-to-one>
 		<many-to-one name="avion" class="Avion" column="idAvion" unique="true"></many-to-one>
 	</class>	
 </hibernate-mapping>

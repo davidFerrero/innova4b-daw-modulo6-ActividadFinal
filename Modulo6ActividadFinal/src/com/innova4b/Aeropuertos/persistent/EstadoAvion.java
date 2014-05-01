@@ -2,24 +2,24 @@ package com.innova4b.Aeropuertos.persistent;
 
 public class EstadoAvion {
 
-	private Long idEstadoAvion;
+	private Long idEstado;
 	private String descripcion;
 	
 	public EstadoAvion() {
 	}
 
-	public EstadoAvion(Long idEstadoAvion, String descripcion) {
+	public EstadoAvion(Long idEstado, String descripcion) {
 		super();
-		this.idEstadoAvion = idEstadoAvion;
+		this.idEstado = idEstado;
 		this.descripcion = descripcion;
 	}
 
-	public Long getIdEstadoAvion() {
-		return idEstadoAvion;
+	public Long getIdEstado() {
+		return idEstado;
 	}
 
-	public void setIdEstadoAvion(Long idEstadoAvion) {
-		this.idEstadoAvion = idEstadoAvion;
+	public void setIdEstado(Long idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	public String getDescripcion() {
@@ -32,7 +32,7 @@ public class EstadoAvion {
 
 	@Override
 	public String toString() {
-		return "Estado Avion: " + this.getIdEstadoAvion() + " Descripcion: "
+		return "Estado Avion: " + this.getIdEstado() + " Descripcion: "
 				+ this.getDescripcion();
 	}
 	

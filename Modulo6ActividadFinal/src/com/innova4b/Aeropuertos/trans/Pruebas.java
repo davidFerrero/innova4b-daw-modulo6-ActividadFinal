@@ -8,7 +8,6 @@ public class Pruebas {
 			GestionAeropuertos er = new GestionAeropuertos();
 			InterfazUsuario interfaz = new InterfazUsuario();
 			
-			interfaz.menuPrincipal();
 	}
 
 }

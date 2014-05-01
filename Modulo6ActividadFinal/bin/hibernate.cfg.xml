@@ -18,7 +18,14 @@
 			thread</property>
 	
 	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/Aeropuerto.hbm.xml"/>
+	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/Avion.hbm.xml"/>
+	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/Billete.hbm.xml"/>
+	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/Compañia.hbm.xml"/>
+	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/EstadoAvion.hbm.xml"/>
+	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/EstadoPuerta.hbm.xml"/>
 	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/Localidad.hbm.xml"/>
+	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/PuertaEmbarque.hbm.xml"/>
+	<mapping resource="resources/com/innova4b/Aeropuertos/persistent/Vuelo.hbm.xml"/>
 	
 	</session-factory>
 	

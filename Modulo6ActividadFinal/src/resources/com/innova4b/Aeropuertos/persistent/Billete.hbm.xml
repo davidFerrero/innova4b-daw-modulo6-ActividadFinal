@@ -10,9 +10,9 @@
 		<property name="dni"></property>
 		<property name="nombre"></property>
 		<property name="apellidos"></property>
-		<property name="fNacimiento"></property>
+		<property name="dtNacimiento"></property>
 		<property name="asiento"></property>
-		<property name="fVuelo"></property>
+		<property name="dtVuelo"></property>
 		<property name="CodBillete"></property>
 		<many-to-one name="vuelo" class="Vuelo" column="idVuelo" unique="true"></many-to-one>
 		<property name="embarca"></property>

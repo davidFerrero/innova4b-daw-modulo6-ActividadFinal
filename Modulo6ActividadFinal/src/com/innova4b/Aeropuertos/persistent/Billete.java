@@ -96,7 +96,7 @@ public class Billete {
 		this.codBillete = codBillete;
 	}
 
-	public Vuelo getIdVuelo() {
+	public Vuelo getVuelo() {
 		return vuelo;
 	}
 

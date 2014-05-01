@@ -3,13 +3,15 @@ public class Localidad {
 
 	private Long idLocalidad;
 	private String nombre;
-
+	private String territorio;
+	
 	public Localidad() {
 	}
 
-	public Localidad(Long idLocalidad, String nombre) {
+	public Localidad(Long idLocalidad, String nombre, String territorio) {
 		this.idLocalidad = idLocalidad;
 		this.nombre = nombre;
+		this.territorio = territorio;
 	}
 
 	
@@ -27,6 +29,14 @@ public class Localidad {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getTerritorio() {
+		return territorio;
+	}
+
+	public void setTerritorio(String territorio) {
+		this.territorio = territorio;
 	}
 
 	@Override

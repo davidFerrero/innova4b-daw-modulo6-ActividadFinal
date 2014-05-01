@@ -1,24 +1,24 @@
 package com.innova4b.Aeropuertos.persistent;
 public class EstadoPuerta {
 
-	private Long idEstadoPuerta;
+	private Long idEstado;
 	private String descripcion;
 
 	public EstadoPuerta() {
 	}
 
-	public EstadoPuerta(Long idEstadoPuerta, String descripcion) {
+	public EstadoPuerta(Long idEstado, String descripcion) {
 		super();
-		this.idEstadoPuerta = idEstadoPuerta;
+		this.idEstado = idEstado;
 		this.descripcion = descripcion;
 	}
 
-	public Long getIdEstadoPuerta() {
-		return idEstadoPuerta;
+	public Long getIdEstado() {
+		return idEstado;
 	}
 
-	public void setIdEstadoPuerta(Long idEstadoPuerta) {
-		this.idEstadoPuerta = idEstadoPuerta;
+	public void setIdEstado(Long idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	public String getDescripcion() {
@@ -31,7 +31,7 @@ public class EstadoPuerta {
 
 	@Override
 	public String toString() {
-		return "Estado Puerta: " + this.getIdEstadoPuerta() + " Descripcion: "
+		return "Estado Puerta: " + this.getIdEstado() + " Descripcion: "
 				+ this.getDescripcion();
 	}
 }

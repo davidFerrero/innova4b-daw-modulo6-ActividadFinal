@@ -11,6 +11,6 @@
 		<property name="maxPasajeros"></property>
 		<property name="personalAbordo"></property>
 		<many-to-one name="compañia" class="Compañia" column="idCompañia" unique="true"></many-to-one>
-		<many-to-one name="idEstado" class="EstadoAvion" column="idEstadoAvion" unique="true"></many-to-one>
+		<many-to-one name="estadoAvion" class="EstadoAvion" column="idEstado" unique="true"></many-to-one>
 	</class>	
 </hibernate-mapping>

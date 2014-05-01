@@ -47,6 +47,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaAeropuerto(er.listAeropuerto());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertAeropuerto();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -65,6 +66,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaAvion(er.listAvion());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertAvion();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -82,6 +84,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaBillete(er.listBillete());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertBillete();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -116,6 +119,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaCompañia(er.listCompañia());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertEstadoAvion();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -133,6 +137,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaEstadoAvion(er.listEstadoAvion());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertEstadoPuerta();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -150,6 +155,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaLocalidad(er.listLocalidad());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertLocalidad();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -167,6 +173,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaPuertaEmbarque(er.listPuertaEmbarque());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertPuertaEmbarque();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -184,6 +191,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostratListaVuelo(er.listVuelo());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertVuelo();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -258,7 +266,7 @@ public class InterfazUsuario {
 		er.insertBillete(billete.getDni(), billete.getNombre(),
 				billete.getApellidos(), billete.getDtNacimiento(),
 				billete.getAsiento(), billete.getDtVuelo(),
-				billete.getCodBillete(), billete.getIdVuelo(),
+				billete.getCodBillete(), billete.getVuelo(),
 				billete.getEmbarca());
 	}
 

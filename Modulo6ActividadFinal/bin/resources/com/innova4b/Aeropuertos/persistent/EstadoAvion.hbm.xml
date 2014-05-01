@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.innova4b.Aeropuertos.persistent">
 	<class name="EstadoAvion" table="EstadoAvion">
-		<id name="idEstadoAvion" column="idEstadoAvion">
+		<id name="idEstado" column="idEstado">
 			<generator class="increment"></generator>
 		</id>
 		<property name="descripcion"></property>	

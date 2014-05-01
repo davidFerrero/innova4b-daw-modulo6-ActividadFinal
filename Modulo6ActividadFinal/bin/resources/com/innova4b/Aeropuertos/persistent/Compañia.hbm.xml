@@ -3,8 +3,8 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.innova4b.Aeropuertos.persistent">
-	<class name="Localidad" table="Localidad">
-		<id name="idLocalidad" column="idLocalidad">
+	<class name="Compañia" table="Compañia">
+		<id name="idCompañia" column="idCompañia">
 			<generator class="increment"></generator>
 		</id>
 		<property name="nombre"></property>

@@ -8,5 +8,6 @@
 			<generator class="increment"></generator>
 		</id>
 		<property name="nombre"></property>
+		<property name="territorio"></property>
 	</class>	
 </hibernate-mapping>
