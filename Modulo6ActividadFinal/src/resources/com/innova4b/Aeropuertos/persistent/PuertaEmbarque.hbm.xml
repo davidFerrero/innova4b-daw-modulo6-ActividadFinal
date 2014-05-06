@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.innova4b.Aeropuertos.persistent">
 	<class name="PuertaEmbarque" table="PuertaEmbarque">
-		<id name="idPuertaEmbarque" column="idPuertaEmbarque">
+		<id name="idPuertaEmbarque" column="id">
 			<generator class="increment"></generator>
 		</id>
 		<many-to-one name="aeropuerto" class="Aeropuerto" column="idAeropuerto" unique="true"></many-to-one>

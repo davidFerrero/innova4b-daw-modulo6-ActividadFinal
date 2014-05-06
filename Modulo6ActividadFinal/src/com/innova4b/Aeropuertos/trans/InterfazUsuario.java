@@ -42,6 +42,7 @@ public class InterfazUsuario {
 				System.out.println(" 1) Ver Aeropuertos ");
 				System.out.println(" 2) Introducir Aeropuerto ");
 				System.out.println(" 3) Borrar Aeropuerto ");
+				System.out.println(" 4) Puertas de embarque libres");
 				System.out.println(" X) Salir ");
 
 				cadena = teclado.getString("Opcion :");
@@ -52,6 +53,8 @@ public class InterfazUsuario {
 					this.insertAeropuerto();
 				} else if (cadena.equalsIgnoreCase("3")) {
 					this.deleteAeropuerto();
+				} else if (cadena.equalsIgnoreCase("4")) {
+					this.puertasEmbarqueAeropuerto();
 				} else if (cadena.equalsIgnoreCase("X")) {
 					salto_intermedios = "exit";
 				}
@@ -61,16 +64,28 @@ public class InterfazUsuario {
 				System.out.println(" 1) Ver Aviones ");
 				System.out.println(" 2) Introducir Avion ");
 				System.out.println(" 3) Borrar Avion ");
+				System.out.println(" 4) Asientos Reservados ");
+				System.out.println(" 5) Asientos Ocupados ");
+				System.out.println(" 6) Licencias Caducadas ");
+				System.out.println(" 7) Aviones en territorio Español ");
 				System.out.println(" X) Salir ");
 
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
-					er.mostratListaAvion(er.listAvion());
+					er.mostrarListaAvion(er.listAvion());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertAvion();
 				} else if (cadena.equalsIgnoreCase("3")) {
 					this.deleteAvion();
+				} else if (cadena.equalsIgnoreCase("4")) {
+					this.asientosReservados();
+				} else if (cadena.equalsIgnoreCase("5")) {
+					this.asientosOcupados();
+				} else if (cadena.equalsIgnoreCase("6")) {
+					this.licenciasCaducadas();
+				} else if (cadena.equalsIgnoreCase("7")) {
+					this.enTerritorio();
 				} else if (cadena.equalsIgnoreCase("X")) {
 					salto_intermedios = "exit";
 				}
@@ -84,7 +99,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
-					er.mostratListaBillete(er.listBillete());
+					er.mostrarListaBillete(er.listBillete());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertBillete();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -102,6 +117,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
+					er.mostrarListaCompañia(er.listCompañia());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertCompañia();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -119,7 +135,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
-					er.mostratListaCompañia(er.listCompañia());
+					er.mostrarListaEstadoAvion(er.listEstadoAvion());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertEstadoAvion();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -137,7 +153,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
-					er.mostratListaEstadoAvion(er.listEstadoAvion());
+					er.mostrarListaEstadoPuerta(er.listEstadoPuerta());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertEstadoPuerta();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -155,7 +171,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
-					er.mostratListaLocalidad(er.listLocalidad());
+					er.mostrarListaLocalidad(er.listLocalidad());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertLocalidad();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -173,7 +189,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
-					er.mostratListaPuertaEmbarque(er.listPuertaEmbarque());
+					er.mostrarListaPuertaEmbarque(er.listPuertaEmbarque());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertPuertaEmbarque();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -191,7 +207,7 @@ public class InterfazUsuario {
 				cadena = teclado.getString("Opcion :");
 
 				if (cadena.equalsIgnoreCase("1")) {
-					er.mostratListaVuelo(er.listVuelo());
+					er.mostrarListaVuelo(er.listVuelo());
 				} else if (cadena.equalsIgnoreCase("2")) {
 					this.insertVuelo();
 				} else if (cadena.equalsIgnoreCase("3")) {
@@ -318,7 +334,8 @@ public class InterfazUsuario {
 		Localidad localidad = new Localidad();
 
 		localidad.setNombre(teclado.getString("Nombre: "));
-		er.insertLocalidad(localidad.getNombre());
+		localidad.setTerritorio(teclado.getString("Territorio: "));
+		er.insertLocalidad(localidad.getNombre(),localidad.getTerritorio());
 	}
 
 	public void insertPuertaEmbarque() {
@@ -421,6 +438,36 @@ public class InterfazUsuario {
 		System.out.println("---------- Borrar Vuelo -----------");
 		System.out.println("Para salir en cualquier momento teclee exit\n");
 		er.deleteVuelo(Long.parseLong(teclado.getString("Vuelo: ")));
+	}
+	
+	public void puertasEmbarqueAeropuerto() {
+		System.out.println("---------- Consulta Puertas de Embarque -----------");
+		System.out.println("Para salir en cualquier momento teclee exit\n");
+		er.numeroPuertasEmbarqueParaAeropuerto(Long.parseLong(teclado.getString("Aeropuerto: ")));
+	}
+
+	public void asientosReservados() {
+		System.out.println("---------- Consulta Asientos Reservados -----------");
+		System.out.println("Para salir en cualquier momento teclee exit\n");
+		er.asientosReservados(Long.parseLong(teclado.getString("Avion: ")));
+	}
+	
+	public void asientosOcupados() {
+		System.out.println("---------- Consulta Puertas de Embarque -----------");
+		System.out.println("Para salir en cualquier momento teclee exit\n");
+		er.asientosOcupados(Long.parseLong(teclado.getString("Avion: ")));
+	}
+	
+	public void licenciasCaducadas() {
+		System.out.println("---------- Consulta Puertas de Embarque -----------");
+		System.out.println("Para salir en cualquier momento teclee exit\n");
+		er.licenciasCaducadas(teclado.getDate("Fecha: "));
+	}
+	
+	public void enTerritorio() {
+		System.out.println("---------- Consulta Puertas de Embarque -----------");
+		System.out.println("Para salir en cualquier momento teclee exit\n");
+		er.enTerritorio(teclado.getString("Territorio: "));
 	}
 
 }

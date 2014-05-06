@@ -1,6 +1,5 @@
 package com.innova4b.Aeropuertos.trans;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +20,7 @@ import com.innova4b.Aeropuertos.persistent.Vuelo;
 public class GestionAeropuertos {
 
 	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-	
+
 	public void insertAeropuerto(String nombre, Localidad localidad) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
@@ -123,7 +122,7 @@ public class GestionAeropuertos {
 		session.getTransaction().commit();
 	}
 
-	public void insertLocalidad(String nombre) {
+	public void insertLocalidad(String nombre,String territorio) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
@@ -131,6 +130,7 @@ public class GestionAeropuertos {
 		Localidad localidad = new Localidad();
 
 		localidad.setNombre(nombre);
+		localidad.setTerritorio(territorio);
 		String id = session.save(localidad).toString();
 
 		session.getTransaction().commit();
@@ -152,8 +152,8 @@ public class GestionAeropuertos {
 		session.getTransaction().commit();
 	}
 
-	public void insertVuelo(Compañia compañia,
-			Date horaSalida, Date horaLlegada, PuertaEmbarque puertaEmbarqueSalida,
+	public void insertVuelo(Compañia compañia, Date horaSalida,
+			Date horaLlegada, PuertaEmbarque puertaEmbarqueSalida,
 			PuertaEmbarque puertaEmbarqueLlegada, Avion avion) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
@@ -448,138 +448,231 @@ public class GestionAeropuertos {
 
 		session.getTransaction().commit();
 	}
-	
+
 	public List<Aeropuerto> listAeropuerto() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<Aeropuerto> lista = (List<Aeropuerto>)sessionFactory.getCurrentSession().createQuery("from Aeropuerto").list();
+		List<Aeropuerto> lista = (List<Aeropuerto>) sessionFactory
+				.getCurrentSession().createQuery("from Aeropuerto").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaAeropuerto(List<Aeropuerto> lista){
+
+	public void mostratListaAeropuerto(List<Aeropuerto> lista) {
 		System.out.println("ID      Nombre");
-		for(Aeropuerto aeropuerto : lista){
-			System.out.println(aeropuerto.getIdAeropuerto()+"       "+aeropuerto.getNombre());
+		for (Aeropuerto aeropuerto : lista) {
+			System.out.println(aeropuerto.getIdAeropuerto() + "       "
+					+ aeropuerto.getNombre());
 		}
 	}
-	
+
 	public List<Avion> listAvion() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		System.out.println("LISTA AVIONES");
-		List<Avion> lista = (List<Avion>)sessionFactory.getCurrentSession().createSQLQuery("Select avion.idAvion, avion.modelo from Avion").list();//.createQuery("from Avion").list();
-		System.out.println("LA LISTA ES DE :"+lista.size());
+		List<Avion> lista = (List<Avion>) sessionFactory.getCurrentSession()
+				.createQuery("from Avion").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaAvion(List<Avion> lista){
+
+	public void mostrarListaAvion(List<Avion> lista) {
 		System.out.println("ID      Modelo");
 
 		System.out.println(lista.size());
-		for(Avion avion : lista){
-			System.out.println(avion.getIdAvion()+"       "+avion.getModelo());
+		for (Avion avion : lista) {
+			System.out.println(avion.getIdAvion() + "       "
+					+ avion.getModelo());
 		}
 	}
+
 	public List<Billete> listBillete() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<Billete> lista = (List<Billete>)sessionFactory.getCurrentSession().createQuery("from Billete").list();
+		List<Billete> lista = (List<Billete>) sessionFactory
+				.getCurrentSession().createQuery("from Billete").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaBillete(List<Billete> lista){
+
+	public void mostrarListaBillete(List<Billete> lista) {
 		System.out.println("ID      DNI");
-		for(Billete billete : lista){
-			System.out.println(billete.getIdBillete()+"       "+billete.getDni());
+		for (Billete billete : lista) {
+			System.out.println(billete.getIdBillete() + "       "
+					+ billete.getDni());
 		}
 	}
+
 	public List<Compañia> listCompañia() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<Compañia> lista = (List<Compañia>)sessionFactory.getCurrentSession().createQuery("from Compañia").list();
+		List<Compañia> lista = (List<Compañia>) sessionFactory
+				.getCurrentSession().createQuery("from Compañia").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaCompañia(List<Compañia> lista){
+
+	public void mostrarListaCompañia(List<Compañia> lista) {
 		System.out.println("ID      NOMBRE");
-		for(Compañia compañia : lista){
-			System.out.println(compañia.getIdCompañia()+"       "+compañia.getNombre());
+		for (Compañia compañia : lista) {
+			System.out.println(compañia.getIdCompañia() + "       "
+					+ compañia.getNombre());
 		}
 	}
+
 	public List<EstadoAvion> listEstadoAvion() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<EstadoAvion> lista = (List<EstadoAvion>)sessionFactory.getCurrentSession().createQuery("from EstadoAvion").list();
+		List<EstadoAvion> lista = (List<EstadoAvion>) sessionFactory
+				.getCurrentSession().createQuery("from EstadoAvion").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaEstadoAvion(List<EstadoAvion> lista){
+
+	public void mostrarListaEstadoAvion(List<EstadoAvion> lista) {
 		System.out.println("ID      DESCRIPCION");
-		for(EstadoAvion estadoAvion : lista){
-			System.out.println(estadoAvion.getIdEstado()+"       "+estadoAvion.getDescripcion());
+		for (EstadoAvion estadoAvion : lista) {
+			System.out.println(estadoAvion.getIdEstado() + "       "
+					+ estadoAvion.getDescripcion());
 		}
 	}
+
 	public List<EstadoPuerta> listEstadoPuerta() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<EstadoPuerta> lista = (List<EstadoPuerta>)sessionFactory.getCurrentSession().createQuery("from EstadoPuerta").list();
+		List<EstadoPuerta> lista = (List<EstadoPuerta>) sessionFactory
+				.getCurrentSession().createQuery("from EstadoPuerta").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaEstadoPuerta(List<EstadoPuerta> lista){
+
+	public void mostrarListaEstadoPuerta(List<EstadoPuerta> lista) {
 		System.out.println("ID      DESCRIPCION");
-		for(EstadoPuerta estadoPuerta : lista){
-			System.out.println(estadoPuerta.getIdEstado()+"       "+estadoPuerta.getDescripcion());
+		for (EstadoPuerta estadoPuerta : lista) {
+			System.out.println(estadoPuerta.getIdEstado() + "       "
+					+ estadoPuerta.getDescripcion());
 		}
 	}
+
 	public List<Localidad> listLocalidad() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<Localidad> lista = (List<Localidad>)sessionFactory.getCurrentSession().createQuery("from Localidad").list();
+		List<Localidad> lista = (List<Localidad>) sessionFactory
+				.getCurrentSession().createQuery("from Localidad").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaLocalidad(List<Localidad> lista){
+
+	public void mostrarListaLocalidad(List<Localidad> lista) {
 		System.out.println("ID      NOMBRE");
-		for(Localidad localidad : lista){
-			System.out.println(localidad.getIdLocalidad()+"       "+localidad.getNombre());
+		for (Localidad localidad : lista) {
+			System.out.println(localidad.getIdLocalidad() + "       "
+					+ localidad.getNombre());
 		}
 	}
+
 	public List<PuertaEmbarque> listPuertaEmbarque() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<PuertaEmbarque> lista = (List<PuertaEmbarque>)sessionFactory.getCurrentSession().createQuery("from PuertaEmbarque").list();
+		List<PuertaEmbarque> lista = (List<PuertaEmbarque>) sessionFactory
+				.getCurrentSession().createQuery("from PuertaEmbarque").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaPuertaEmbarque(List<PuertaEmbarque> lista){
+
+	public void mostrarListaPuertaEmbarque(List<PuertaEmbarque> lista) {
 		System.out.println("ID      ESTADO");
-		for(PuertaEmbarque puerta : lista){
-			System.out.println(puerta.getIdPuertaEmbarque()+"       "+puerta.getEstadoPuerta());
+		for (PuertaEmbarque puerta : lista) {
+			System.out.println(puerta.getIdPuertaEmbarque() + "       "
+					+ puerta.getEstadoPuerta());
 		}
 	}
+
 	public List<Vuelo> listVuelo() {
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<Vuelo> lista = (List<Vuelo>)sessionFactory.getCurrentSession().createQuery("from Vuelo").list();
+		List<Vuelo> lista = (List<Vuelo>) sessionFactory.getCurrentSession()
+				.createQuery("from Vuelo").list();
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		return lista;
 	}
-	
-	public void mostratListaVuelo(List<Vuelo> lista){
+
+	public void mostrarListaVuelo(List<Vuelo> lista) {
 		System.out.println("ID      ESTADO");
-		for(Vuelo vuelo : lista){
-			System.out.println(vuelo.getIdVuelo()+"       "+vuelo.getCompañia());
+		for (Vuelo vuelo : lista) {
+			System.out.println(vuelo.getIdVuelo() + "       "
+					+ vuelo.getCompañia());
 		}
 	}
-		
+
+	public void numeroPuertasEmbarqueParaAeropuerto(Long idAeropuerto) {
+		sessionFactory.getCurrentSession().beginTransaction();
+		System.out
+				.println("El numero de puertas de embarque asociadas al aeropuerto "
+						+ idAeropuerto
+						+ " son "
+						+ sessionFactory
+								.getCurrentSession()
+								.createQuery(
+										"from PuertaEmbarque as p WHERE p.aeropuerto.idAeropuerto = :idAeropuerto and p.estadoPuerta.disponible = 0")
+								.setParameter("idAeropuerto", idAeropuerto)
+								.list().size());
+		sessionFactory.getCurrentSession().getTransaction().commit();
+	}
+
+	public void asientosReservados(Long idAvion) {
+		sessionFactory.getCurrentSession().beginTransaction();
+		System.out
+				.println("El numero de asientos asociados al avion "
+						+ idAvion
+						+ " son "
+						+ sessionFactory
+								.getCurrentSession()
+								.createQuery(
+										"from Billete as b WHERE b.vuelo.avion.idAvion = :idAvion")
+								.setParameter("idAvion", idAvion).list().size());
+		sessionFactory.getCurrentSession().getTransaction().commit();
+	}
+	
+	public void asientosOcupados(Long idAvion) {
+		sessionFactory.getCurrentSession().beginTransaction();
+		System.out
+				.println("El numero de asientos asociados al avion "
+						+ idAvion
+						+ " son "
+						+ sessionFactory
+								.getCurrentSession()
+								.createQuery(
+										"from Billete as b WHERE b.vuelo.avion.idAvion = :idAvion and b.embarca = 1")
+								.setParameter("idAvion", idAvion).list().size());
+		sessionFactory.getCurrentSession().getTransaction().commit();
+	}
+
+	public void licenciasCaducadas(Date fecha) {
+		sessionFactory.getCurrentSession().beginTransaction();
+		List<Avion> aviones = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from Avion as a WHERE a.compañia.dtCaducidad < :fecha ")
+				.setParameter("fecha", fecha).list(); 
+				System.out.println("El numero aviones con licencias caducadas a fecha de "
+						+ fecha
+						+ " son ");
+				this.mostrarListaAvion(aviones);
+		sessionFactory.getCurrentSession().getTransaction().commit();
+	}
+	
+	public void enTerritorio(String territorio) {
+		sessionFactory.getCurrentSession().beginTransaction();
+		List<Vuelo> vuelo = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from Vuelo as v WHERE (v.puertaEmbarqueLlegada.aeropuerto.localidad.territorio = :territorio) OR (v.puertaEmbarqueSalida.aeropuerto.localidad.territorio = :territorio) ")
+				.setParameter("territorio",territorio).list(); 
+				System.out.println("Los aviones en "
+						+ territorio
+						+ " son ");
+				this.mostrarListaVuelo(vuelo);
+		sessionFactory.getCurrentSession().getTransaction().commit();
+	}
+
 	public static void main(String[] args) {
 
-			GestionAeropuertos er = new GestionAeropuertos();
-			InterfazUsuario interfaz = new InterfazUsuario();
-			
-			er.mostratListaAvion(er.listAvion());
-			
-			//interfaz.menuPrincipal();
-			
+		GestionAeropuertos er = new GestionAeropuertos();
+		InterfazUsuario interfaz = new InterfazUsuario();
+
+		interfaz.menuPrincipal();
+		
+
 	}
 }
