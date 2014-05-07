@@ -233,11 +233,9 @@ public class InterfazUsuario {
 		System.out.println("Para salir en cualquier momento teclee exit\n");
 
 		aeropuerto.setNombre(teclado.getString("Nombre: "));
+		er.mostrarListaLocalidad(er.listLocalidad());
 		aeropuerto.setLocalidad(er.retrieveLocalidad(teclado
 				.getLong("Localidad: ")));
-
-		System.out.println("Localidad nombre :"
-				+ aeropuerto.getLocalidad().getNombre());
 
 		er.insertAeropuerto(aeropuerto.getNombre(), aeropuerto.getLocalidad());
 	}
@@ -252,8 +250,10 @@ public class InterfazUsuario {
 		avion.setModelo(teclado.getString("Modelo: "));
 		avion.setMaxPasajeros(teclado.getInt("Maximos Pasajeros: "));
 		avion.setPersonalAbordo(teclado.getInt("Personal Abordo: "));
+		er.mostrarListaEstadoAvion(er.listEstadoAvion());
 		avion.setEstadoAvion(er.retrieveEstadoAvion(teclado
 				.getLong("Estado Avion: ")));
+		er.mostrarListaCompañia(er.listCompañia());
 		avion.setCompañia(er.retrieveCompañia(teclado.getLong("Compañia: ")));
 
 		er.insertAvion(avion.getModelo(), avion.getMaxPasajeros(),
@@ -276,6 +276,7 @@ public class InterfazUsuario {
 		billete.setAsiento(teclado.getInt("Asiento: "));
 		billete.setDtVuelo(teclado.getDate("Fecha Vuelo: "));
 		billete.setCodBillete(teclado.getString("Codigo Billete: "));
+		er.mostrarListaVuelo(er.listVuelo());
 		billete.setVuelo(er.retrieveVuelo(teclado.getLong("Vuelo: ")));
 		billete.setEmbarca(teclado.getInt("Embarca S(1) / N(0): "));
 
@@ -344,9 +345,10 @@ public class InterfazUsuario {
 		System.out.println("Para salir en cualquier momento teclee exit\n");
 
 		PuertaEmbarque puertaEmbarque = new PuertaEmbarque();
-
+		er.mostratListaAeropuerto(er.listAeropuerto());
 		puertaEmbarque.setAeropuerto(er.retrieveAeropuerto(teclado
 				.getLong("Aeropuerto: ")));
+		er.mostrarListaEstadoPuerta(er.listEstadoPuerta());
 		puertaEmbarque.setEstadoPuerta(er.retrieveEstadoPuerta(teclado
 				.getLong("Estado Puerta: ")));
 
@@ -360,14 +362,17 @@ public class InterfazUsuario {
 		System.out.println("Para salir en cualquier momento teclee exit\n");
 
 		Vuelo vuelo = new Vuelo();
-
+		er.mostrarListaCompañia(er.listCompañia());
 		vuelo.setCompañia(er.retrieveCompañia(teclado.getLong("Compañia: ")));
 		vuelo.setHoraSalida(teclado.getDate("Hora Salida: "));
 		vuelo.setHoraLlegada(teclado.getDate("Hora Llegada: "));
+		er.mostrarListaPuertaEmbarque(er.listPuertaEmbarque());
 		vuelo.setPuertaEmbarqueSalida(er.retrievePuertaEmbarque(teclado
 				.getLong("Puerta Embarque Salida: ")));
+		er.mostrarListaPuertaEmbarque(er.listPuertaEmbarque());
 		vuelo.setPuertaEmbarqueLlegada(er.retrievePuertaEmbarque(teclado
 				.getLong("Puerta Embarque Llegada: ")));
+		er.mostrarListaAvion(er.listAvion());
 		vuelo.setAvion(er.retrieveAvion(teclado.getLong("Avion: ")));
 
 		er.insertVuelo(vuelo.getCompañia(),

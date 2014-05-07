@@ -122,7 +122,7 @@ public class GestionAeropuertos {
 		session.getTransaction().commit();
 	}
 
-	public void insertLocalidad(String nombre,String territorio) {
+	public void insertLocalidad(String nombre, String territorio) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		session.beginTransaction();
@@ -196,7 +196,7 @@ public class GestionAeropuertos {
 
 		session.beginTransaction();
 
-		avion = (Avion) session.get(Aeropuerto.class, idAvion);
+		avion = (Avion) session.get(Avion.class, idAvion);
 
 		session.getTransaction().commit();
 
@@ -575,7 +575,7 @@ public class GestionAeropuertos {
 		System.out.println("ID      ESTADO");
 		for (PuertaEmbarque puerta : lista) {
 			System.out.println(puerta.getIdPuertaEmbarque() + "       "
-					+ puerta.getEstadoPuerta());
+					+ puerta.getEstadoPuerta().getDescripcion());
 		}
 	}
 
@@ -623,7 +623,7 @@ public class GestionAeropuertos {
 								.setParameter("idAvion", idAvion).list().size());
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
-	
+
 	public void asientosOcupados(Long idAvion) {
 		sessionFactory.getCurrentSession().beginTransaction();
 		System.out
@@ -644,25 +644,23 @@ public class GestionAeropuertos {
 				.getCurrentSession()
 				.createQuery(
 						"from Avion as a WHERE a.compañia.dtCaducidad < :fecha ")
-				.setParameter("fecha", fecha).list(); 
-				System.out.println("El numero aviones con licencias caducadas a fecha de "
-						+ fecha
-						+ " son ");
-				this.mostrarListaAvion(aviones);
+				.setParameter("fecha", fecha).list();
+		System.out
+				.println("El numero aviones con licencias caducadas a fecha de "
+						+ fecha + " son ");
+		this.mostrarListaAvion(aviones);
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
-	
+
 	public void enTerritorio(String territorio) {
 		sessionFactory.getCurrentSession().beginTransaction();
 		List<Vuelo> vuelo = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from Vuelo as v WHERE (v.puertaEmbarqueLlegada.aeropuerto.localidad.territorio = :territorio) OR (v.puertaEmbarqueSalida.aeropuerto.localidad.territorio = :territorio) ")
-				.setParameter("territorio",territorio).list(); 
-				System.out.println("Los aviones en "
-						+ territorio
-						+ " son ");
-				this.mostrarListaVuelo(vuelo);
+						"from Vuelo as v WHERE (v.puertaEmbarqueLlegada.aeropuerto.localidad.territorio = :territorio) OR (v.puertaEmbarqueSalida.aeropuerto.localidad.territorio = :territorio)")
+				.setParameter("territorio", territorio).list();
+		System.out.println("Los aviones en " + territorio + " son ");
+		this.mostrarListaVuelo(vuelo);
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
@@ -672,7 +670,6 @@ public class GestionAeropuertos {
 		InterfazUsuario interfaz = new InterfazUsuario();
 
 		interfaz.menuPrincipal();
-		
 
 	}
 }

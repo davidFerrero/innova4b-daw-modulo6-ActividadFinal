@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 3.4.11.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-05-2014 a las 21:32:32
--- Versión del servidor: 5.5.37-0ubuntu0.14.04.1
--- Versión de PHP: 5.5.9-1ubuntu4
+-- Tiempo de generación: 07-05-2014 a las 09:11:47
+-- Versión del servidor: 5.5.37
+-- Versión de PHP: 5.4.6-1ubuntu1.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `Aeropuerto` (
   `idLocalidad` int(11) NOT NULL,
   PRIMARY KEY (`idAeropuerto`),
   KEY `idLocalidad` (`idLocalidad`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `Aeropuerto`
@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS `Aeropuerto` (
 INSERT INTO `Aeropuerto` (`idAeropuerto`, `nombre`, `idLocalidad`) VALUES
 (1, 'Madrid Barajas', 1),
 (2, 'Zamora', 2),
-(3, 'Londres', 2);
+(3, 'Londres', 2),
+(4, 'Sochi', 4);
 
 -- --------------------------------------------------------
 
@@ -162,16 +163,18 @@ INSERT INTO `EstadoAvion` (`idEstado`, `Descripcion`) VALUES
 CREATE TABLE IF NOT EXISTS `EstadoPuerta` (
   `idEstado` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
+  `disponible` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idEstado`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `EstadoPuerta`
 --
 
-INSERT INTO `EstadoPuerta` (`idEstado`, `descripcion`) VALUES
-(1, 'Abierta'),
-(2, 'Cerrada');
+INSERT INTO `EstadoPuerta` (`idEstado`, `descripcion`, `disponible`) VALUES
+(1, 'Abierta', 1),
+(2, 'Cerrada', 1),
+(3, 'Averiada', 0);
 
 -- --------------------------------------------------------
 
@@ -184,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `Localidad` (
   `nombre` varchar(45) NOT NULL,
   `territorio` varchar(45) NOT NULL,
   PRIMARY KEY (`idLocalidad`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `Localidad`
@@ -193,7 +196,8 @@ CREATE TABLE IF NOT EXISTS `Localidad` (
 INSERT INTO `Localidad` (`idLocalidad`, `nombre`, `territorio`) VALUES
 (1, 'Madrid', 'España'),
 (2, 'Paris', 'Francia'),
-(3, 'londres', 'Reino Unido');
+(3, 'londres', 'Reino Unido'),
+(4, 'Moscu', 'Rusia');
 
 -- --------------------------------------------------------
 
@@ -286,8 +290,8 @@ ALTER TABLE `Aeropuerto`
 -- Filtros para la tabla `Avion`
 --
 ALTER TABLE `Avion`
-  ADD CONSTRAINT `fk_idEstadoAvion` FOREIGN KEY (`idEstado`) REFERENCES `EstadoAvion` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_idCompañiaAvion` FOREIGN KEY (`idCompañia`) REFERENCES `Compañia` (`idCompañia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_idCompañiaAvion` FOREIGN KEY (`idCompañia`) REFERENCES `Compañia` (`idCompañia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idEstadoAvion` FOREIGN KEY (`idEstado`) REFERENCES `EstadoAvion` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `Billete`
@@ -299,16 +303,16 @@ ALTER TABLE `Billete`
 -- Filtros para la tabla `PuertaEmbarque`
 --
 ALTER TABLE `PuertaEmbarque`
-  ADD CONSTRAINT `fk_idEstadoPuerta` FOREIGN KEY (`idEstadoPuerta`) REFERENCES `EstadoPuerta` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_IdAeropuero` FOREIGN KEY (`idAeropuerto`) REFERENCES `Aeropuerto` (`idAeropuerto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_IdAeropuero` FOREIGN KEY (`idAeropuerto`) REFERENCES `Aeropuerto` (`idAeropuerto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idEstadoPuerta` FOREIGN KEY (`idEstadoPuerta`) REFERENCES `EstadoPuerta` (`idEstado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `Vuelo`
 --
 ALTER TABLE `Vuelo`
-  ADD CONSTRAINT `fk_idPuertaEmbarqueLlegada` FOREIGN KEY (`idPuertaEmbarqueLlegada`) REFERENCES `PuertaEmbarque` (`id`),
   ADD CONSTRAINT `fk_idAvion` FOREIGN KEY (`idAvion`) REFERENCES `Avion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_idCompañia` FOREIGN KEY (`idCompañia`) REFERENCES `Compañia` (`idCompañia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idPuertaEmbarqueLlegada` FOREIGN KEY (`idPuertaEmbarqueLlegada`) REFERENCES `PuertaEmbarque` (`id`),
   ADD CONSTRAINT `fk_idPuertaEmbarqueSalida` FOREIGN KEY (`idPuertaEmbarqueSalida`) REFERENCES `PuertaEmbarque` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

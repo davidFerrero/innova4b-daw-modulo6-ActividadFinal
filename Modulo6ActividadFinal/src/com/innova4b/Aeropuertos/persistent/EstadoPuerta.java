@@ -3,12 +3,12 @@ public class EstadoPuerta {
 
 	private Long idEstado;
 	private String descripcion;
-	private boolean disponible;
+	private int disponible;
 
 	public EstadoPuerta() {
 	}
 
-	public EstadoPuerta(Long idEstado, String descripcion, boolean disponible) {
+	public EstadoPuerta(Long idEstado, String descripcion, int disponible) {
 		super();
 		this.idEstado = idEstado;
 		this.descripcion = descripcion;
@@ -31,11 +31,11 @@ public class EstadoPuerta {
 		this.descripcion = descripcion;
 	}
 
-	public boolean isDisponible() {
+	public int getDisponible() {
 		return disponible;
 	}
 
-	public void setDisponible(boolean disponible) {
+	public void setDisponible(int disponible) {
 		this.disponible = disponible;
 	}
 
